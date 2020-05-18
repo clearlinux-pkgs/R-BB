@@ -4,21 +4,21 @@
 #
 Name     : R-BB
 Version  : 2019.10.1
-Release  : 17
+Release  : 18
 URL      : https://cran.r-project.org/src/contrib/BB_2019.10-1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/BB_2019.10-1.tar.gz
 Summary  : Solving and Optimizing Large-Scale Nonlinear Systems
 Group    : Development/Tools
 License  : GPL-3.0
+Requires: R-Hmisc
+Requires: R-numDeriv
 Requires: R-quadprog
+Requires: R-setRNG
 BuildRequires : R-Hmisc
-BuildRequires : R-acepack
-BuildRequires : R-backports
 BuildRequires : R-numDeriv
 BuildRequires : R-quadprog
 BuildRequires : R-setRNG
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
 system of equations, and for optimizing nonlinear objective
@@ -29,21 +29,22 @@ system of equations, and for optimizing nonlinear objective
 
 %prep
 %setup -q -c -n BB
+cd %{_builddir}/BB
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571800337
+export SOURCE_DATE_EPOCH=1589781765
 
 %install
-export SOURCE_DATE_EPOCH=1571800337
+export SOURCE_DATE_EPOCH=1589781765
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
